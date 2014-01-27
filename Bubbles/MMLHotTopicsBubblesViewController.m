@@ -72,7 +72,7 @@ static const NSUInteger MMLHopTopicsBubbleMax = 20;
     
     while (shouldContinue) {
         
-        CGPoint anchor = CGPointMake(dx, 50.f);
+        CGPoint anchor = CGPointMake(dx, 64.f);
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(anchor.x, anchor.y, 25.f, 25.f)];
         view.backgroundColor = [UIColor greenColor];

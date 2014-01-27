@@ -23,6 +23,7 @@
 		772376C81896C02700E33E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 772376C61896C02700E33E6B /* InfoPlist.strings */; };
 		772376CA1896C02700E33E6B /* BubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 772376C91896C02700E33E6B /* BubblesTests.m */; };
 		77904F731896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */; };
+		77904F761896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		772376C91896C02700E33E6B /* BubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubblesTests.m; sourceTree = "<group>"; };
 		77904F711896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLHotTopicBubbleBehavior.h; sourceTree = "<group>"; };
 		77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLHotTopicBubbleBehavior.m; sourceTree = "<group>"; };
+		77904F741896E67500E76EB6 /* MMLBubbleOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLBubbleOptionsTableViewController.h; sourceTree = "<group>"; };
+		77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLBubbleOptionsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 				772376AB1896C02600E33E6B /* MMLAppDelegate.m */,
 				772376AD1896C02600E33E6B /* Main_iPhone.storyboard */,
 				772376B01896C02600E33E6B /* Main_iPad.storyboard */,
+				77904F741896E67500E76EB6 /* MMLBubbleOptionsTableViewController.h */,
+				77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */,
 				772376B31896C02600E33E6B /* MMLHotTopicsBubblesViewController.h */,
 				772376B41896C02600E33E6B /* MMLHotTopicsBubblesViewController.m */,
 				77904F711896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.h */,
@@ -259,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				772376A81896C02600E33E6B /* main.m in Sources */,
+				77904F761896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m in Sources */,
 				772376B51896C02600E33E6B /* MMLHotTopicsBubblesViewController.m in Sources */,
 				77904F731896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m in Sources */,
 				772376AC1896C02600E33E6B /* MMLAppDelegate.m in Sources */,
