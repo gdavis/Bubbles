@@ -8,9 +8,10 @@
 
 #import "MMLHotTopicBubbleBehavior.h"
 
-const CGFloat MMLHotTopicBubbleElasticity = 0.9f;
+const CGFloat MMLHotTopicBubbleElasticity = 0.7f;
 const CGFloat MMLHotTopicBubbleFriction = 0.05f;
 const CGFloat MMLHotTopicBubbleResistance = 0.05f;
+const CGFloat MMLHotTopicBubbleDensity = 5.f;
 
 const NSTimeInterval MMLHotTopicBubblePushUpdateInterval = 1.0f;
 
@@ -98,8 +99,8 @@ const NSTimeInterval MMLHotTopicBubblePushUpdateInterval = 1.0f;
 
 - (void)pushTimerTick
 {
-    CGFloat angle = [self randomValue] * M_PI;
-    CGFloat magnitude = ([self randomValue] * 1.f) + 0.1f;
+    CGFloat angle = [self randomValue] > .5f ? M_PI : 0;
+    CGFloat magnitude = ([self randomValue] * 0.05f) + 0.05f;
     [self.pushBehavior setAngle:angle magnitude:magnitude];
     [self startPushTimer];
 }

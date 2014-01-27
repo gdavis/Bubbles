@@ -11,10 +11,10 @@
 
 #define ARC4RANDOM_MAX      0x100000000
 
-static const CGVector MMLHopTopicsBubbleGravityDirection = { 0.0f, -0.1f };
+static const CGVector MMLHopTopicsBubbleGravityDirection = { 0.0f, -0.05f };
 static const NSUInteger MMLHopTopicsBubbleMax = 20;
 
-@interface MMLHotTopicsBubblesViewController ()
+@interface MMLHotTopicsBubblesViewController () <UICollisionBehaviorDelegate>
 
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
@@ -50,18 +50,63 @@ static const NSUInteger MMLHopTopicsBubbleMax = 20;
     [super viewWillAppear:animated];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self createTestBubbles];
+    [self createTopBoundaries];
+    [self createBubbles];
 }
 
 
 #pragma mark - Private
 
 
-- (void)createTestBubbles
+- (void)createTopBoundaries
+{
+    BOOL shouldContinue = YES;
+    
+    CGFloat dx = 0.f;
+    UIView *previousView;
+    
+    while (shouldContinue) {
+        
+        CGPoint anchor = CGPointMake(dx, 50.f);
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(anchor.x, anchor.y, 25.f, 25.f)];
+        view.backgroundColor = [UIColor greenColor];
+        [self.view addSubview:view];
+        
+        UIDynamicItemBehavior *itemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[view]];
+        itemBehavior.allowsRotation = NO;
+        [self.animator addBehavior:itemBehavior];
+        
+        UIAttachmentBehavior *attachment;
+        if (previousView != nil) {
+            attachment = [[UIAttachmentBehavior alloc] initWithItem:view attachedToItem:previousView];
+        }
+        else {
+            attachment = [[UIAttachmentBehavior alloc] initWithItem:view attachedToAnchor:anchor];
+        }
+        
+        attachment.damping = 0.95f;
+        attachment.frequency = 4.f;
+        attachment.length = 0.f;
+        [self.animator addBehavior:attachment];
+        
+        [self.bubbleCollisionBehavior addItem:view];
+        dx += CGRectGetWidth(view.frame);
+        
+        if (dx >= CGRectGetWidth(self.view.frame)) {
+            shouldContinue = NO;
+            continue;
+        }
+    }
+}
+
+
+- (void)createBubbles
 {
     self.bubbles = [@[] mutableCopy];
     
@@ -77,11 +122,12 @@ static const NSUInteger MMLHopTopicsBubbleMax = 20;
 - (void)addBubble
 {
     CGFloat size = 50.f + ((arc4random() / (CGFloat)ARC4RANDOM_MAX) * 50.f);
-    CGFloat dx = (arc4random() / (CGFloat)ARC4RANDOM_MAX) * CGRectGetWidth(self.view.frame);
+    CGFloat dx = (arc4random() / (CGFloat)ARC4RANDOM_MAX) * (CGRectGetWidth(self.view.frame) - size);
     CGFloat dy = CGRectGetHeight(self.view.frame) + size;
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, size, size)];
     button.center = CGPointMake(dx, dy);
+    [button setImage:[UIImage imageNamed:@"bubble"] forState:UIControlStateNormal];
     button.backgroundColor = [UIColor colorWithRed:1.f green:0.f blue:1.f alpha:0.5f];
     [button addTarget:self action:@selector(handleButtonTouch) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
@@ -123,6 +169,7 @@ static const NSUInteger MMLHopTopicsBubbleMax = 20;
     return _gravityBehavior;
 }
 
+
 - (UICollisionBehavior *)boundaryCollisionBehavior
 {
     if (_boundaryCollisionBehavior == nil) {
@@ -146,9 +193,27 @@ static const NSUInteger MMLHopTopicsBubbleMax = 20;
 {
     if (_bubbleCollisionBehavior == nil) {
         _bubbleCollisionBehavior = [[UICollisionBehavior alloc] init];
-        [_bubbleCollisionBehavior setCollisionMode:UICollisionBehaviorModeItems];
+        _bubbleCollisionBehavior.collisionDelegate = self;
+        _bubbleCollisionBehavior.collisionMode = UICollisionBehaviorModeItems;
     }
     return _bubbleCollisionBehavior;
+}
+
+
+#pragma mark - UICollisionBehaviorDelegate
+
+
+- (void)collisionBehavior:(UICollisionBehavior*)behavior beganContactForItem:(id <UIDynamicItem>)item1 withItem:(id <UIDynamicItem>)item2 atPoint:(CGPoint)p
+{
+//    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    
+}
+
+
+- (void)collisionBehavior:(UICollisionBehavior*)behavior endedContactForItem:(id <UIDynamicItem>)item1 withItem:(id <UIDynamicItem>)item2
+{
+//    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 
