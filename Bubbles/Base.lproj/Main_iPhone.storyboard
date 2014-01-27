@@ -69,15 +69,15 @@
                                             <segue destination="vXZ-lx-hvc" kind="push" id="raQ-BP-W1e"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="okr-v5-It8" style="IBUITableViewCellStyleDefault" id="KHU-US-Cjm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="okr-v5-It8" style="IBUITableViewCellStyleDefault" id="KHU-US-Cjm">
                                         <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KHU-US-Cjm" id="LXs-cB-aB6">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Snap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="okr-v5-It8">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -85,6 +85,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="q07-kS-Nsc" kind="push" id="3nF-rM-SIR"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="TmU-VN-v0t" style="IBUITableViewCellStyleDefault" id="D4r-VG-Nk9">
                                         <rect key="frame" x="0.0" y="152" width="320" height="44"/>
@@ -116,6 +119,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2Q-r8-SeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10" y="90"/>
+        </scene>
+        <!--Bubble Snap View Controller-->
+        <scene sceneID="7HD-PN-LoQ">
+            <objects>
+                <viewController id="q07-kS-Nsc" customClass="MMLBubbleSnapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZSw-z5-yhb"/>
+                        <viewControllerLayoutGuide type="bottom" id="nMI-03-SUp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ipw-pm-zww">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YJw-lJ-znH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cvv-xp-uqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528" y="356"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

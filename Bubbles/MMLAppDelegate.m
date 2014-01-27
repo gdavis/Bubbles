@@ -7,6 +7,7 @@
 //
 
 #import "MMLAppDelegate.h"
+#import "MMLHotTopic.h"
 
 @implementation MMLAppDelegate
 
@@ -41,6 +42,25 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (NSArray *)hotTopics
+{
+    return @[
+             [[MMLHotTopic alloc] initWithHashtag:@"gorams" count:1],
+             [[MMLHotTopic alloc] initWithHashtag:@"gobuffs" count:2],
+             [[MMLHotTopic alloc] initWithHashtag:@"unc" count:3],
+             [[MMLHotTopic alloc] initWithHashtag:@"cu" count:4],
+             [[MMLHotTopic alloc] initWithHashtag:@"csu" count:5],
+             [[MMLHotTopic alloc] initWithHashtag:@"grandrapids" count:6],
+             [[MMLHotTopic alloc] initWithHashtag:@"gogreen" count:7],
+             [[MMLHotTopic alloc] initWithHashtag:@"msu" count:8],
+             [[MMLHotTopic alloc] initWithHashtag:@"mighigan" count:9],
+             [[MMLHotTopic alloc] initWithHashtag:@"goduke" count:10],
+             [[MMLHotTopic alloc] initWithHashtag:@"bbn" count:11],
+             [[MMLHotTopic alloc] initWithHashtag:@"goblue" count:12],
+             ];
 }
 
 @end

@@ -22,8 +22,12 @@
 		772376C01896C02700E33E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7723769F1896C02600E33E6B /* UIKit.framework */; };
 		772376C81896C02700E33E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 772376C61896C02700E33E6B /* InfoPlist.strings */; };
 		772376CA1896C02700E33E6B /* BubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 772376C91896C02700E33E6B /* BubblesTests.m */; };
+		7724708B189705260040077F /* MMLHotTopicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724708A189705260040077F /* MMLHotTopicButton.m */; };
 		77904F731896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */; };
 		77904F761896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */; };
+		77904F791896E7B000E76EB6 /* MMLBubbleSnapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F781896E7B000E76EB6 /* MMLBubbleSnapViewController.m */; };
+		77904F7E1896EDB000E76EB6 /* APLPositionToBoundsMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F7D1896EDB000E76EB6 /* APLPositionToBoundsMapping.m */; };
+		77AA1F471897014E00D1FD43 /* MMLHotTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AA1F461897014E00D1FD43 /* MMLHotTopic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +61,18 @@
 		772376C51896C02700E33E6B /* BubblesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BubblesTests-Info.plist"; sourceTree = "<group>"; };
 		772376C71896C02700E33E6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		772376C91896C02700E33E6B /* BubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubblesTests.m; sourceTree = "<group>"; };
+		77247089189705260040077F /* MMLHotTopicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLHotTopicButton.h; sourceTree = "<group>"; };
+		7724708A189705260040077F /* MMLHotTopicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLHotTopicButton.m; sourceTree = "<group>"; };
 		77904F711896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLHotTopicBubbleBehavior.h; sourceTree = "<group>"; };
 		77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLHotTopicBubbleBehavior.m; sourceTree = "<group>"; };
 		77904F741896E67500E76EB6 /* MMLBubbleOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLBubbleOptionsTableViewController.h; sourceTree = "<group>"; };
 		77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLBubbleOptionsTableViewController.m; sourceTree = "<group>"; };
+		77904F771896E7B000E76EB6 /* MMLBubbleSnapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLBubbleSnapViewController.h; sourceTree = "<group>"; };
+		77904F781896E7B000E76EB6 /* MMLBubbleSnapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLBubbleSnapViewController.m; sourceTree = "<group>"; };
+		77904F7C1896EDB000E76EB6 /* APLPositionToBoundsMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLPositionToBoundsMapping.h; sourceTree = "<group>"; };
+		77904F7D1896EDB000E76EB6 /* APLPositionToBoundsMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLPositionToBoundsMapping.m; sourceTree = "<group>"; };
+		77AA1F451897014E00D1FD43 /* MMLHotTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLHotTopic.h; sourceTree = "<group>"; };
+		77AA1F461897014E00D1FD43 /* MMLHotTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLHotTopic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,14 +134,16 @@
 			children = (
 				772376AA1896C02600E33E6B /* MMLAppDelegate.h */,
 				772376AB1896C02600E33E6B /* MMLAppDelegate.m */,
+				77AA1F451897014E00D1FD43 /* MMLHotTopic.h */,
+				77AA1F461897014E00D1FD43 /* MMLHotTopic.m */,
 				772376AD1896C02600E33E6B /* Main_iPhone.storyboard */,
 				772376B01896C02600E33E6B /* Main_iPad.storyboard */,
 				77904F741896E67500E76EB6 /* MMLBubbleOptionsTableViewController.h */,
 				77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */,
-				772376B31896C02600E33E6B /* MMLHotTopicsBubblesViewController.h */,
-				772376B41896C02600E33E6B /* MMLHotTopicsBubblesViewController.m */,
 				77904F711896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.h */,
 				77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */,
+				77904F7A1896E7BA00E76EB6 /* Dynamic */,
+				77904F7B1896E7C700E76EB6 /* Snap */,
 				772376B61896C02700E33E6B /* Images.xcassets */,
 				772376A21896C02600E33E6B /* Supporting Files */,
 			);
@@ -163,6 +177,28 @@
 				772376C61896C02700E33E6B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77904F7A1896E7BA00E76EB6 /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				772376B31896C02600E33E6B /* MMLHotTopicsBubblesViewController.h */,
+				772376B41896C02600E33E6B /* MMLHotTopicsBubblesViewController.m */,
+			);
+			name = Dynamic;
+			sourceTree = "<group>";
+		};
+		77904F7B1896E7C700E76EB6 /* Snap */ = {
+			isa = PBXGroup;
+			children = (
+				77904F771896E7B000E76EB6 /* MMLBubbleSnapViewController.h */,
+				77904F781896E7B000E76EB6 /* MMLBubbleSnapViewController.m */,
+				77904F7C1896EDB000E76EB6 /* APLPositionToBoundsMapping.h */,
+				77904F7D1896EDB000E76EB6 /* APLPositionToBoundsMapping.m */,
+				77247089189705260040077F /* MMLHotTopicButton.h */,
+				7724708A189705260040077F /* MMLHotTopicButton.m */,
+			);
+			name = Snap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,9 +299,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7724708B189705260040077F /* MMLHotTopicButton.m in Sources */,
+				77AA1F471897014E00D1FD43 /* MMLHotTopic.m in Sources */,
 				772376A81896C02600E33E6B /* main.m in Sources */,
 				77904F761896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m in Sources */,
 				772376B51896C02600E33E6B /* MMLHotTopicsBubblesViewController.m in Sources */,
+				77904F791896E7B000E76EB6 /* MMLBubbleSnapViewController.m in Sources */,
+				77904F7E1896EDB000E76EB6 /* APLPositionToBoundsMapping.m in Sources */,
 				77904F731896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m in Sources */,
 				772376AC1896C02600E33E6B /* MMLAppDelegate.m in Sources */,
 			);
