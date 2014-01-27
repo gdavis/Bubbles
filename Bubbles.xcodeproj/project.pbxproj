@@ -23,6 +23,9 @@
 		772376C81896C02700E33E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 772376C61896C02700E33E6B /* InfoPlist.strings */; };
 		772376CA1896C02700E33E6B /* BubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 772376C91896C02700E33E6B /* BubblesTests.m */; };
 		7724708B189705260040077F /* MMLHotTopicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724708A189705260040077F /* MMLHotTopicButton.m */; };
+		7724708F189714510040077F /* MMLSpriteKitBubblesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724708E189714510040077F /* MMLSpriteKitBubblesViewController.m */; };
+		77247091189714C70040077F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77247090189714C70040077F /* SpriteKit.framework */; };
+		772470DF189715930040077F /* MMLBubblesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 772470DE189715930040077F /* MMLBubblesScene.m */; };
 		77904F731896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */; };
 		77904F761896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */; };
 		77904F791896E7B000E76EB6 /* MMLBubbleSnapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77904F781896E7B000E76EB6 /* MMLBubbleSnapViewController.m */; };
@@ -63,6 +66,11 @@
 		772376C91896C02700E33E6B /* BubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubblesTests.m; sourceTree = "<group>"; };
 		77247089189705260040077F /* MMLHotTopicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLHotTopicButton.h; sourceTree = "<group>"; };
 		7724708A189705260040077F /* MMLHotTopicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLHotTopicButton.m; sourceTree = "<group>"; };
+		7724708D189714510040077F /* MMLSpriteKitBubblesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLSpriteKitBubblesViewController.h; sourceTree = "<group>"; };
+		7724708E189714510040077F /* MMLSpriteKitBubblesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLSpriteKitBubblesViewController.m; sourceTree = "<group>"; };
+		77247090189714C70040077F /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		772470DD189715930040077F /* MMLBubblesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLBubblesScene.h; sourceTree = "<group>"; };
+		772470DE189715930040077F /* MMLBubblesScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLBubblesScene.m; sourceTree = "<group>"; };
 		77904F711896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLHotTopicBubbleBehavior.h; sourceTree = "<group>"; };
 		77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLHotTopicBubbleBehavior.m; sourceTree = "<group>"; };
 		77904F741896E67500E76EB6 /* MMLBubbleOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLBubbleOptionsTableViewController.h; sourceTree = "<group>"; };
@@ -80,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77247091189714C70040077F /* SpriteKit.framework in Frameworks */,
 				7723769E1896C02600E33E6B /* CoreGraphics.framework in Frameworks */,
 				772376A01896C02600E33E6B /* UIKit.framework in Frameworks */,
 				7723769C1896C02600E33E6B /* Foundation.framework in Frameworks */,
@@ -121,6 +130,7 @@
 		7723769A1896C02600E33E6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77247090189714C70040077F /* SpriteKit.framework */,
 				7723769B1896C02600E33E6B /* Foundation.framework */,
 				7723769D1896C02600E33E6B /* CoreGraphics.framework */,
 				7723769F1896C02600E33E6B /* UIKit.framework */,
@@ -142,6 +152,7 @@
 				77904F751896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m */,
 				77904F711896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.h */,
 				77904F721896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m */,
+				7724708C189714410040077F /* SpriteKit */,
 				77904F7A1896E7BA00E76EB6 /* Dynamic */,
 				77904F7B1896E7C700E76EB6 /* Snap */,
 				772376B61896C02700E33E6B /* Images.xcassets */,
@@ -177,6 +188,17 @@
 				772376C61896C02700E33E6B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7724708C189714410040077F /* SpriteKit */ = {
+			isa = PBXGroup;
+			children = (
+				7724708D189714510040077F /* MMLSpriteKitBubblesViewController.h */,
+				7724708E189714510040077F /* MMLSpriteKitBubblesViewController.m */,
+				772470DD189715930040077F /* MMLBubblesScene.h */,
+				772470DE189715930040077F /* MMLBubblesScene.m */,
+			);
+			name = SpriteKit;
 			sourceTree = "<group>";
 		};
 		77904F7A1896E7BA00E76EB6 /* Dynamic */ = {
@@ -299,11 +321,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				772470DF189715930040077F /* MMLBubblesScene.m in Sources */,
 				7724708B189705260040077F /* MMLHotTopicButton.m in Sources */,
 				77AA1F471897014E00D1FD43 /* MMLHotTopic.m in Sources */,
 				772376A81896C02600E33E6B /* main.m in Sources */,
 				77904F761896E67500E76EB6 /* MMLBubbleOptionsTableViewController.m in Sources */,
 				772376B51896C02600E33E6B /* MMLHotTopicsBubblesViewController.m in Sources */,
+				7724708F189714510040077F /* MMLSpriteKitBubblesViewController.m in Sources */,
 				77904F791896E7B000E76EB6 /* MMLBubbleSnapViewController.m in Sources */,
 				77904F7E1896EDB000E76EB6 /* APLPositionToBoundsMapping.m in Sources */,
 				77904F731896C70B00E76EB6 /* MMLHotTopicBubbleBehavior.m in Sources */,

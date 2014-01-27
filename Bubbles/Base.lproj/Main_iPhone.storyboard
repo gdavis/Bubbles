@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="-330"/>
+            <point key="canvasLocation" x="637" y="-595"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tKZ-Un-l8U">
@@ -89,15 +89,15 @@
                                             <segue destination="q07-kS-Nsc" kind="push" id="3nF-rM-SIR"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="TmU-VN-v0t" style="IBUITableViewCellStyleDefault" id="D4r-VG-Nk9">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="TmU-VN-v0t" style="IBUITableViewCellStyleDefault" id="D4r-VG-Nk9">
                                         <rect key="frame" x="0.0" y="152" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D4r-VG-Nk9" id="vLW-YX-fXr">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Ambient" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TmU-VN-v0t">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="SpriteKit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TmU-VN-v0t">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -105,6 +105,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="aSj-Ew-36o" kind="push" id="LwT-Gz-wMM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -119,6 +122,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2Q-r8-SeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10" y="90"/>
+        </scene>
+        <!--Sprite Kit Bubbles View Controller-->
+        <scene sceneID="X4y-hR-SED">
+            <objects>
+                <viewController id="aSj-Ew-36o" customClass="MMLSpriteKitBubblesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pfG-bZ-SID"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Z3-Fk-tEy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yc9-sp-0kj" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wfw-Zd-pUB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GRw-K3-ARK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="637" y="745"/>
         </scene>
         <!--Bubble Snap View Controller-->
         <scene sceneID="7HD-PN-LoQ">
@@ -137,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvv-xp-uqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="356"/>
+            <point key="canvasLocation" x="637" y="91"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
