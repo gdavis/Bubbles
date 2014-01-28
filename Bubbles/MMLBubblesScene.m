@@ -10,8 +10,8 @@
 
 
 typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
-    MMLBubblesSceneColliderTypeWall = 0x1 << 0,
-    MMLBubblesSceneColliderTypeBubble = 0x1 << 1,
+    MMLBubblesSceneColliderTypeWall = 0x1 << 1,
+    MMLBubblesSceneColliderTypeBubble = 0x1 << 2,
 };
 
 
@@ -48,6 +48,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 {
     [self setupWorld];
     [self setupBoundaries];
+    [self setupTopBarrier];
 }
 
 
@@ -63,15 +64,8 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
     CGFloat viewHeight = CGRectGetHeight(self.view.frame);
     
-    // top
-    SKNode *edge = [SKNode node];
-    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointZero toPoint:CGPointMake(viewWidth, 0.f)];
-    edge.physicsBody.dynamic = NO;
-    edge.physicsBody.categoryBitMask = MMLBubblesSceneColliderTypeWall;
-    edge.position = CGPointMake(0.f, viewHeight -64.f);
-    [self addChild:edge];
-    
     // left
+    SKNode *edge = [SKNode node];
     edge = [SKNode node];
     edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointZero toPoint:CGPointMake(0.f, viewHeight)];
     edge.physicsBody.dynamic = NO;
@@ -87,12 +81,60 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 }
 
 
+- (void)setupTopBarrier
+{
+    NSUInteger numberOfJoints = 24;
+    CGFloat jointWidth = CGRectGetWidth(self.view.frame) / numberOfJoints;
+    CGFloat jointHeight = 25.f;
+    
+    CGFloat dx = 0.f;
+    CGFloat dy = CGRectGetHeight(self.view.frame) - 100.f;
+    
+    SKNode *previousJointNode;
+    SKNode *leftAnchorNode = [SKNode node];
+    
+    leftAnchorNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(jointWidth, jointHeight)];
+    leftAnchorNode.physicsBody.dynamic = NO;
+    leftAnchorNode.position = CGPointMake(dx, dy);
+    [self addChild:leftAnchorNode];
+    
+    for (NSInteger i = 0; i < numberOfJoints; i++) {
+        
+        SKShapeNode *jointNode = [SKShapeNode node];
+        jointNode.fillColor = [UIColor yellowColor];
+        jointNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, jointWidth, jointHeight)].CGPath;
+        [self addChild:jointNode];
+        
+        jointNode.position = CGPointMake(dx, dy);
+        
+        jointNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(jointWidth, jointHeight)];
+        jointNode.physicsBody.affectedByGravity = NO;
+        
+        if (i == 0 || i+1 == numberOfJoints) {
+            jointNode.physicsBody.dynamic = NO;
+        }
+        
+        if (previousJointNode != nil) {
+            
+            SKPhysicsJointPin *pinJoint = [SKPhysicsJointPin jointWithBodyA:previousJointNode.physicsBody
+                                                                      bodyB:jointNode.physicsBody
+                                                                     anchor:jointNode.position];
+            [self.physicsWorld addJoint:pinJoint];
+        }
+        
+        previousJointNode = jointNode;
+        
+        dx += jointWidth;
+    }
+}
+
+
 
 - (void)addBubbleNodeWithTopic:(MMLHotTopic *)topic
 {
     SKSpriteNode *bubbleNode = [[SKSpriteNode alloc] initWithImageNamed:@"bubble"];
     
-    CGFloat size = randomValue() * 150.f;
+    CGFloat size = fmax(50.f, randomValue() * 100);
     bubbleNode.size = CGSizeMake(size, size);
     
     bubbleNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:bubbleNode.size.width/2];
@@ -104,8 +146,8 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
     
     bubbleNode.physicsBody.allowsRotation = NO;
     bubbleNode.physicsBody.restitution = 0.8f;
-    bubbleNode.physicsBody.friction = 0.f;
-    bubbleNode.physicsBody.linearDamping = 0.f;
+    bubbleNode.physicsBody.friction = 0.1f;
+    bubbleNode.physicsBody.linearDamping = 0.5f;
     
     bubbleNode.position = CGPointMake(randomValue() * CGRectGetWidth(self.view.frame), 0.f);
     
