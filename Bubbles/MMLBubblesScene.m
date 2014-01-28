@@ -10,12 +10,12 @@
 #import "MMLBubbleSpriteNode.h"
 #import "MMLAppDelegate.h"
 
-static const CGFloat MMLBubbleMaxSize = 75.f;
+static const CGFloat MMLBubbleVariableSize = 75.f;
 static const CGFloat MMLBubbleMinSize = 50.f;
 
 static const CGFloat MMLBubblePhysicsBodyFriction = 0.05f;
-static const CGFloat MMLBubblePhysicsBodyRestitution = 0.5f;
-static const CGFloat MMLBubblePhysicsBodyLinearDamping = 0.5f;
+static const CGFloat MMLBubblePhysicsBodyRestitution = 0.2f;
+static const CGFloat MMLBubblePhysicsBodyLinearDamping = 0.1f;
 
 
 typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
@@ -30,6 +30,8 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 @property (nonatomic, strong) NSMutableArray *bubbleNodes;
 @property (nonatomic) NSUInteger totalTweetsCount;
 @property (nonatomic, strong) SKEmitterNode *backgroundBubbleEmitter;
+@property (nonatomic) CGFloat horizontalGravity;
+@property (nonatomic) CGFloat verticleGravity;
 
 @end
 
@@ -52,6 +54,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 
 - (void)didMoveToView:(SKView *)view
 {
+    [self setupAppearance];
     [self setupWorld];
     [self setupBoundaries];
     [self setupTopBarrier];
@@ -60,6 +63,17 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 
 
 #pragma mark - Public
+
+
+- (void)update:(NSTimeInterval)currentTime
+{
+    self.horizontalGravity = cosf(currentTime) * 0.2f;
+    self.verticleGravity = 0.3f + sinf(currentTime) * 0.4f;
+    
+    NSLog(@"h: %.2f, v: %.2f", self.horizontalGravity, self.verticleGravity);
+    
+    self.physicsWorld.gravity = CGVectorMake(self.horizontalGravity, self.verticleGravity);
+}
 
 
 - (void)setTopics:(NSArray *)topics
@@ -120,9 +134,17 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 #pragma mark - Private
 
 
+- (void)setupAppearance
+{
+    self.backgroundColor = [UIColor colorWithRed:64.f/255 green:34.f/255 blue:27.f/255 alpha:1.f];
+}
+
+
 - (void)setupWorld
 {
-    self.physicsWorld.gravity = CGVectorMake(0.f, 1.f);
+    self.horizontalGravity = 0.f;
+    self.verticleGravity = 1.f;
+    self.physicsWorld.gravity = CGVectorMake(self.horizontalGravity, self.verticleGravity);
 }
 
 
@@ -134,14 +156,14 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
     // left
     SKNode *edge = [SKNode node];
     edge = [SKNode node];
-    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointZero toPoint:CGPointMake(0.f, viewHeight)];
+    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0.f, -viewHeight) toPoint:CGPointMake(0.f, viewHeight)];
     edge.physicsBody.dynamic = NO;
     edge.physicsBody.categoryBitMask = MMLBubblesSceneColliderTypeWall;
     [self addChild:edge];
     
     // right
     edge = [SKNode node];
-    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(viewWidth, 0.f) toPoint:CGPointMake(viewWidth, viewHeight)];
+    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(viewWidth, -viewHeight) toPoint:CGPointMake(viewWidth, viewHeight)];
     edge.physicsBody.dynamic = NO;
     edge.physicsBody.categoryBitMask = MMLBubblesSceneColliderTypeWall;
     [self addChild:edge];
@@ -207,17 +229,20 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 - (void)addBubbleNodeWithTopic:(MMLHotTopic *)topic
 {
     MMLBubbleSpriteNode *bubbleNode = [[MMLBubbleSpriteNode alloc] initWithImageNamed:@"bubble"];
+    [self addChild:bubbleNode];
     bubbleNode.topic = topic;
     
-    CGFloat percentOfMaxSize = 1.f - [self.bubbleTopics indexOfObject:topic] / (CGFloat)self.bubbleTopics.count;
+    NSUInteger topicIndex = [self.bubbleTopics indexOfObject:topic];
+    CGFloat percentOfMaxSize = 1.f - topicIndex / (CGFloat)self.bubbleTopics.count;
     
-    CGFloat size = MMLBubbleMinSize + percentOfMaxSize * MMLBubbleMaxSize;
+    CGFloat size = MMLBubbleMinSize + percentOfMaxSize * MMLBubbleVariableSize;
     bubbleNode.size = CGSizeMake(size, size);
     
     CGFloat radius = size * 0.5f;
     
     bubbleNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
     bubbleNode.physicsBody.dynamic = YES;
+    bubbleNode.physicsBody.density = percentOfMaxSize;
     
     bubbleNode.physicsBody.categoryBitMask = MMLBubblesSceneColliderTypeBubble;
     bubbleNode.physicsBody.collisionBitMask = MMLBubblesSceneColliderTypeWall | MMLBubblesSceneColliderTypeBubble;
@@ -230,9 +255,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
     CGFloat halfViewWidth = CGRectGetWidth(self.view.frame) * 0.5f;
     CGFloat xp = halfViewWidth + randRange(-halfViewWidth * 0.5, halfViewWidth * 0.5);
     
-    bubbleNode.position = CGPointMake(xp, -radius);
-    
-    [self addChild:bubbleNode];
+    bubbleNode.position = CGPointMake(xp, -radius - (MMLBubbleMinSize + MMLBubbleVariableSize) * topicIndex);
     
     [self.bubbleNodes addObject:bubbleNode];
 }

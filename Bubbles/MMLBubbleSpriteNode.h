@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) MMLHotTopic *topic;
 
+- (MMLBubbleSpriteNode *)initWithImageNamed:(NSString *)imageName;
+
 @end
