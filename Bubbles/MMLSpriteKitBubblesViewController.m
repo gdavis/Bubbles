@@ -53,12 +53,8 @@
 {
     [super viewDidAppear:animated];
     
-    NSArray *unsortedTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopics];
-    
-    NSArray *topics = [unsortedTopics sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"count" ascending:NO],
-                                                                   [NSSortDescriptor sortDescriptorWithKey:@"hashtag" ascending:YES]]];
-    
-    [self.scene setTopics:topics];
+    NSArray *hotTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopics];
+    [self.scene setTopics:hotTopics];
 }
 
 
