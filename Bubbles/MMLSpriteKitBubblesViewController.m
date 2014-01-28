@@ -16,6 +16,8 @@
 @interface MMLSpriteKitBubblesViewController ()
 
 @property (nonatomic, strong) MMLBubblesScene *scene;
+@property (nonatomic, strong) NSTimer *refreshDataTimer;
+@property (nonatomic) NSUInteger refreshCount;
 
 @end
 
@@ -53,7 +55,37 @@
 {
     [super viewDidAppear:animated];
     
-    NSArray *hotTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopics];
+    self.refreshCount = 0;
+    
+    NSArray *hotTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopicsOne];
+    [self.scene setTopics:hotTopics];
+    
+    [self startDataRefreshTimer];
+}
+
+
+- (void)startDataRefreshTimer
+{
+    self.refreshDataTimer = [NSTimer scheduledTimerWithTimeInterval:20.f
+                                                             target:self
+                                                           selector:@selector(reloadData)
+                                                           userInfo:nil
+                                                            repeats:YES];
+}
+
+
+- (void)reloadData
+{
+    self.refreshCount++;
+    
+    NSArray *hotTopics;
+    if (self.refreshCount % 2 == 0) {
+        hotTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopicsOne];
+    }
+    else {
+        hotTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopicsTwo];
+    }
+    
     [self.scene setTopics:hotTopics];
 }
 

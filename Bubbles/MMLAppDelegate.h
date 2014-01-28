@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (NSArray *)hotTopics;
+- (NSArray *)hotTopicsOne;
+- (NSArray *)hotTopicsTwo;
 
 @end

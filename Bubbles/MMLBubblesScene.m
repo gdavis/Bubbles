@@ -83,7 +83,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 {
     NSArray *oldTopicHashtags = [self.bubbleTopics valueForKey:@"hashtag"];
     
-    NSArray *unsortedTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopics];
+    NSArray *unsortedTopics = topics;
     
     self.bubbleTopics = [unsortedTopics sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"count" ascending:NO],
                                                                       [NSSortDescriptor sortDescriptorWithKey:@"hashtag" ascending:YES]]];
@@ -102,7 +102,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
         NSUInteger newIndex = [newTopicHashtags indexOfObject:hashtag];
         
         if (newIndex == NSNotFound) {
-            [self.bubbleTopics enumerateObjectsUsingBlock:^(MMLBubbleSpriteNode *button, NSUInteger idx, BOOL *stop) {
+            [self.bubbleNodes enumerateObjectsUsingBlock:^(MMLBubbleSpriteNode *button, NSUInteger idx, BOOL *stop) {
                 if ([button.topic.hashtag isEqualToString:hashtag]) {
                     [buttonsToRemove addObject:button];
                 }
@@ -259,7 +259,6 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
     bubbleNode.physicsBody.linearDamping = MMLBubblePhysicsBodyLinearDamping;
     
     CGFloat halfViewWidth = CGRectGetWidth(self.view.frame) * 0.5f;
-//    CGFloat xp = halfViewWidth + randRange(-(halfViewWidth-size), halfViewWidth-size);
     CGFloat xp = halfViewWidth + (randRange(-halfViewWidth*.5, halfViewWidth*.5));
     
     bubbleNode.position = CGPointMake(xp, -radius - (MMLBubbleMinSize + MMLBubbleVariableSize) * topicIndex);
@@ -270,8 +269,24 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 
 - (void)removeBubbleNode:(SKNode *)bubbleNode
 {
-    [bubbleNode removeFromParent];
     [self.bubbleNodes removeObject:bubbleNode];
+    
+    
+    SKAction *delayAction = [SKAction waitForDuration:randomValue()];
+    [bubbleNode runAction:delayAction completion:^{
+        
+        bubbleNode.physicsBody.categoryBitMask = 0;
+        bubbleNode.physicsBody.collisionBitMask = 0;
+        
+        SKAction *popAction = [SKAction scaleTo:1.2f duration:0.1f];
+        popAction.timingMode = SKActionTimingEaseIn;
+        
+        [bubbleNode runAction:popAction
+                   completion:^{
+                       [bubbleNode removeFromParent];
+                   }];
+    }];
+    
 }
 
 

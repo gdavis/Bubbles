@@ -45,7 +45,7 @@
 }
 
 
-- (NSArray *)hotTopics
+- (NSArray *)hotTopicsOne
 {
     return @[
              [[MMLHotTopic alloc] initWithHashtag:@"gorams" count:1],
@@ -60,6 +60,25 @@
              [[MMLHotTopic alloc] initWithHashtag:@"goduke" count:10],
              [[MMLHotTopic alloc] initWithHashtag:@"bbn" count:11],
              [[MMLHotTopic alloc] initWithHashtag:@"goblue" count:12],
+             ];
+}
+
+
+- (NSArray *)hotTopicsTwo
+{
+    return @[
+             [[MMLHotTopic alloc] initWithHashtag:@"gorattlers" count:1],
+             [[MMLHotTopic alloc] initWithHashtag:@"gosooners" count:2],
+             [[MMLHotTopic alloc] initWithHashtag:@"unc" count:3],
+             [[MMLHotTopic alloc] initWithHashtag:@"cu" count:4],
+             [[MMLHotTopic alloc] initWithHashtag:@"csu" count:5],
+             [[MMLHotTopic alloc] initWithHashtag:@"thunderbirds" count:6],
+             [[MMLHotTopic alloc] initWithHashtag:@"seawolves" count:7],
+             [[MMLHotTopic alloc] initWithHashtag:@"tribe" count:8],
+             [[MMLHotTopic alloc] initWithHashtag:@"uconn" count:9],
+             [[MMLHotTopic alloc] initWithHashtag:@"baylor" count:10],
+             [[MMLHotTopic alloc] initWithHashtag:@"bulldogs" count:11],
+             [[MMLHotTopic alloc] initWithHashtag:@"stjohn" count:12],
              ];
 }
 

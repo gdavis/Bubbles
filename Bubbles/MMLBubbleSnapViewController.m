@@ -131,7 +131,7 @@ static const CGFloat MMLBubbleSizeMin = 50.f;
     
     NSArray *oldTopicHashtags = [self.hotTopics valueForKey:@"hashtag"];
     
-    NSArray *unsortedTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopics];
+    NSArray *unsortedTopics = [(MMLAppDelegate *)[[UIApplication sharedApplication] delegate] hotTopicsOne];
     
     self.hotTopics = [unsortedTopics sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"count" ascending:NO],
                                                                    [NSSortDescriptor sortDescriptorWithKey:@"hashtag" ascending:YES]]];
