@@ -10,12 +10,15 @@
 #import "MMLBubbleSpriteNode.h"
 #import "MMLAppDelegate.h"
 
+
 static const CGFloat MMLBubbleVariableSize = 75.f;
 static const CGFloat MMLBubbleMinSize = 50.f;
 
 static const CGFloat MMLBubblePhysicsBodyFriction = 0.05f;
 static const CGFloat MMLBubblePhysicsBodyRestitution = 0.2f;
 static const CGFloat MMLBubblePhysicsBodyLinearDamping = 0.1f;
+
+static const NSUInteger MMLBubbleTopBarrierJointCount = 20;
 
 
 typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
@@ -68,7 +71,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 - (void)update:(NSTimeInterval)currentTime
 {
     self.horizontalGravity = cosf(currentTime) * 0.2f;
-    self.verticleGravity = 0.3f + sinf(currentTime) * 0.4f;
+    self.verticleGravity = 0.2f + sinf(currentTime) * 0.3f;
     
     NSLog(@"h: %.2f, v: %.2f", self.horizontalGravity, self.verticleGravity);
     
@@ -136,7 +139,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 
 - (void)setupAppearance
 {
-    self.backgroundColor = [UIColor colorWithRed:64.f/255 green:34.f/255 blue:27.f/255 alpha:1.f];
+    self.backgroundColor = [UIColor colorWithRed:21.f/255 green:7.f/255 blue:0.f/255 alpha:1.f];
 }
 
 
@@ -156,14 +159,14 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
     // left
     SKNode *edge = [SKNode node];
     edge = [SKNode node];
-    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0.f, -viewHeight) toPoint:CGPointMake(0.f, viewHeight)];
+    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0.f, -viewHeight*2) toPoint:CGPointMake(0.f, viewHeight)];
     edge.physicsBody.dynamic = NO;
     edge.physicsBody.categoryBitMask = MMLBubblesSceneColliderTypeWall;
     [self addChild:edge];
     
     // right
     edge = [SKNode node];
-    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(viewWidth, -viewHeight) toPoint:CGPointMake(viewWidth, viewHeight)];
+    edge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(viewWidth, -viewHeight*2) toPoint:CGPointMake(viewWidth, viewHeight)];
     edge.physicsBody.dynamic = NO;
     edge.physicsBody.categoryBitMask = MMLBubblesSceneColliderTypeWall;
     [self addChild:edge];
@@ -172,11 +175,11 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 
 - (void)setupTopBarrier
 {
-    NSUInteger numberOfJoints = 24;
+    NSUInteger numberOfJoints = MMLBubbleTopBarrierJointCount;
     CGFloat jointWidth = CGRectGetWidth(self.view.frame) / numberOfJoints;
     CGFloat jointHeight = 25.f;
     
-    CGFloat dx = 0.f;
+    CGFloat dx = jointWidth * 0.5f;
     CGFloat dy = CGRectGetHeight(self.view.frame) - 100.f;
     
     SKNode *previousJointNode;
@@ -191,13 +194,16 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
         
         SKShapeNode *jointNode = [SKShapeNode node];
         jointNode.fillColor = [UIColor yellowColor];
-        jointNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, jointWidth, jointHeight)].CGPath;
+        jointNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(-jointWidth * 0.5f, -jointHeight * 0.5f, jointWidth, jointHeight)].CGPath;
         [self addChild:jointNode];
         
         jointNode.position = CGPointMake(dx, dy);
         
         jointNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(jointWidth, jointHeight)];
         jointNode.physicsBody.affectedByGravity = NO;
+        jointNode.physicsBody.restitution = 0.95f;
+        jointNode.physicsBody.friction = 1.0f;
+        jointNode.physicsBody.linearDamping = 0.95f;
         
         if (i == 0 || i+1 == numberOfJoints) {
             jointNode.physicsBody.dynamic = NO;
@@ -221,7 +227,7 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
 - (void)setupBackgroundEmitter
 {
     self.backgroundBubbleEmitter.particlePositionRange = CGVectorMake(CGRectGetWidth(self.view.frame), 0.0f);
-    self.backgroundBubbleEmitter.position = CGPointMake(CGRectGetMidX(self.view.frame), 0.0f);
+    self.backgroundBubbleEmitter.position = CGPointMake(CGRectGetMidX(self.view.frame), -50.0f);
     [self addChild:self.backgroundBubbleEmitter];
 }
 
@@ -253,7 +259,8 @@ typedef NS_ENUM(uint32_t, MMLBubblesSceneColliderType) {
     bubbleNode.physicsBody.linearDamping = MMLBubblePhysicsBodyLinearDamping;
     
     CGFloat halfViewWidth = CGRectGetWidth(self.view.frame) * 0.5f;
-    CGFloat xp = halfViewWidth + randRange(-halfViewWidth * 0.5, halfViewWidth * 0.5);
+//    CGFloat xp = halfViewWidth + randRange(-(halfViewWidth-size), halfViewWidth-size);
+    CGFloat xp = halfViewWidth + (randRange(-halfViewWidth*.5, halfViewWidth*.5));
     
     bubbleNode.position = CGPointMake(xp, -radius - (MMLBubbleMinSize + MMLBubbleVariableSize) * topicIndex);
     
