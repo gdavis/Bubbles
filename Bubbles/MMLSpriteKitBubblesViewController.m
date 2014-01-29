@@ -66,7 +66,7 @@
 
 - (void)startDataRefreshTimer
 {
-    self.refreshDataTimer = [NSTimer scheduledTimerWithTimeInterval:20.f
+    self.refreshDataTimer = [NSTimer scheduledTimerWithTimeInterval:20.0f
                                                              target:self
                                                            selector:@selector(reloadData)
                                                            userInfo:nil

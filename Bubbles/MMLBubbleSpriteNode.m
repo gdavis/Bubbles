@@ -18,15 +18,6 @@
 
 @implementation MMLBubbleSpriteNode
 
-- (MMLBubbleSpriteNode *)initWithImageNamed:(NSString *)imageName
-{
-    if (self = [super initWithImageNamed:imageName]) {
-        
-    }
-    return self;
-}
-
-
 - (void)setTopic:(MMLHotTopic *)topic
 {
     _topic = topic;
@@ -38,8 +29,10 @@
 {
     if (_labelNode == nil) {
         _labelNode = [SKLabelNode labelNodeWithFontNamed:@"HelveticaNeue"];
-        _labelNode.fontSize = 12.f;
+        _labelNode.fontSize = 12.0f;
+        _labelNode.fontColor = [UIColor redColor];
         _labelNode.position = [self convertPoint:self.position fromNode:self.parent];
+        _labelNode.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         [self addChild:_labelNode];
     }
     return _labelNode;

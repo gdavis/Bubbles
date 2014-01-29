@@ -26,6 +26,8 @@
 		7724708F189714510040077F /* MMLSpriteKitBubblesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724708E189714510040077F /* MMLSpriteKitBubblesViewController.m */; };
 		77247091189714C70040077F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77247090189714C70040077F /* SpriteKit.framework */; };
 		772470DF189715930040077F /* MMLBubblesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 772470DE189715930040077F /* MMLBubblesScene.m */; };
+		7733A99B189858F1002A96E2 /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7733A999189858F1002A96E2 /* hexagon.png */; };
+		7733A99C189858F1002A96E2 /* hexagon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7733A99A189858F1002A96E2 /* hexagon@2x.png */; };
 		774D15C018980A7D00376021 /* MMLBubbleSpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 774D15BF18980A7D00376021 /* MMLBubbleSpriteNode.m */; };
 		774D15C31898136D00376021 /* SodaBubbles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 774D15C11898136D00376021 /* SodaBubbles.sks */; };
 		774D15C61898145600376021 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 774D15C51898145600376021 /* bubble.png */; };
@@ -74,6 +76,8 @@
 		77247090189714C70040077F /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		772470DD189715930040077F /* MMLBubblesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLBubblesScene.h; sourceTree = "<group>"; };
 		772470DE189715930040077F /* MMLBubblesScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLBubblesScene.m; sourceTree = "<group>"; };
+		7733A999189858F1002A96E2 /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexagon.png; sourceTree = SOURCE_ROOT; };
+		7733A99A189858F1002A96E2 /* hexagon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon@2x.png"; sourceTree = SOURCE_ROOT; };
 		774D15BE18980A7D00376021 /* MMLBubbleSpriteNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLBubbleSpriteNode.h; sourceTree = "<group>"; };
 		774D15BF18980A7D00376021 /* MMLBubbleSpriteNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLBubbleSpriteNode.m; sourceTree = "<group>"; };
 		774D15C11898136D00376021 /* SodaBubbles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SodaBubbles.sks; path = ../SodaBubbles.sks; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				774D15BE18980A7D00376021 /* MMLBubbleSpriteNode.h */,
 				774D15BF18980A7D00376021 /* MMLBubbleSpriteNode.m */,
 				774D15C11898136D00376021 /* SodaBubbles.sks */,
+				7733A999189858F1002A96E2 /* hexagon.png */,
+				7733A99A189858F1002A96E2 /* hexagon@2x.png */,
 				774D15C51898145600376021 /* bubble.png */,
 			);
 			name = SpriteKit;
@@ -311,9 +317,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				774D15C61898145600376021 /* bubble.png in Resources */,
+				7733A99B189858F1002A96E2 /* hexagon.png in Resources */,
 				772376B21896C02600E33E6B /* Main_iPad.storyboard in Resources */,
 				772376B71896C02700E33E6B /* Images.xcassets in Resources */,
 				772376AF1896C02600E33E6B /* Main_iPhone.storyboard in Resources */,
+				7733A99C189858F1002A96E2 /* hexagon@2x.png in Resources */,
 				772376A61896C02600E33E6B /* InfoPlist.strings in Resources */,
 				774D15C31898136D00376021 /* SodaBubbles.sks in Resources */,
 			);
